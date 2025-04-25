@@ -1,4 +1,3 @@
-import Header from '@/components/header';
 import ProfileCard from '@/components/profile-card';
 
 import { Metadata } from "next";
@@ -14,8 +13,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="home w-full max-w-[800px] mx-auto">
-      <Header />
+    <div>
       <ProfileCard />
     </div>
   );

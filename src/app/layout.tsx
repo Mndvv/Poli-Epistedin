@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
+
+import Header from '@/components/header';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,9 +42,10 @@ export default function RootLayout({
 }>) {
   return (
     <>
+    <ViewTransitions>
     <html lang="en" suppressHydrationWarning >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full max-w-[800px] mx-auto`}
       >
         <ThemeProvider
           attribute="class"
@@ -49,10 +53,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+        <Header />
         {children}
         </ThemeProvider>
       </body>
     </html>
+    </ViewTransitions>
     </>
   );
 }
