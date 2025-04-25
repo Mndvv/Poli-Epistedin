@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Poli-Epistedin",
   description: "A portofolio site to show off my work and projects as a web developer.",
   keywords: ["web", "portfolio", "developer", "react"],
