@@ -1,7 +1,7 @@
 export const webDefaults = {
     title: "Poli-Epistedin",
     description: "Πόλις Σοφία Εδίνα - Poli-Epistedin",
-    webHeader: "Πόλις Σοφία Εδίνα",
+    webHeader: ["Πόλις Σοφία Εδίνα", "𒌷𒊩𒂔", "Poli-Epistedin"],
     webSubHeader: "Polis, Sophia, Edina",
   };
   
