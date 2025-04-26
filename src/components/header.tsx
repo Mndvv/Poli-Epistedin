@@ -45,8 +45,8 @@ export default function Header() {
     }, [text, isDeleting, index]);
 
     return (
-        <div className="flex flex-col p-4 md:p-6 select-none transition-all duration-300 ease-in-out">
-            <div className="flex justify-between items-center">
+        <header className="flex flex-col p-4 md:p-6 select-none transition-all duration-300 ease-in-out sticky top-0 z-50 bg-background/50 backdrop-blur-lg w-full">
+            <div className="w-full max-w-3xl mx-auto flex justify-between items-center">
                 <div className="ml-6" onClick={handleClick}>
                     <Link className="text-2xl md:text-3xl font-bold cursor-pointer" href="/">
                         <span className="whitespace-pre">{text}</span>
@@ -60,6 +60,6 @@ export default function Header() {
                     <ThemeToggleButton />
                 </div>
             </div>
-        </div>
+        </header>
     );
 }

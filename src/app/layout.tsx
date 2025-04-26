@@ -5,6 +5,7 @@ import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 
 import Header from '@/components/header';
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,7 +46,7 @@ export default function RootLayout({
     <ViewTransitions>
     <html lang="en" suppressHydrationWarning >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full max-w-[800px] mx-auto`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -54,7 +55,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
         <Header />
+        <main className="w-full max-w-3xl mx-auto p-5 flex flex-col gap-5">
         {children}
+        </main>
+        <Footer />
         </ThemeProvider>
       </body>
     </html>

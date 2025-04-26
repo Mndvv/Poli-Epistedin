@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-screen p-4">
       <ProfileCard />
     </div>
   );
