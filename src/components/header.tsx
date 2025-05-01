@@ -1,65 +1,68 @@
 'use client';
 
-import ThemeToggleButton from "./ui/theme-toggle-button";
-import { webDefaults } from "@/lib/global/consts.g";
+import ThemeToggleButton from './ui/theme-toggle-button';
+import { webDefaults } from '@/lib/global/consts.g';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from "react";
-import { Link } from "next-view-transitions";
+import { useEffect, useState } from 'react';
+import { Link } from 'next-view-transitions';
 
 const texts = webDefaults.webHeader;
-const typingSpeed = 120;      // Typewriter typing speed (ms)
-const deletingSpeed = 80;     // Typewriter deleting speed (ms)
-const delayBetween = 2000;    // Delay between typewriting (ms)
+const typingSpeed = 120; // Typewriter typing speed (ms)
+const deletingSpeed = 80; // Typewriter deleting speed (ms)
+const delayBetween = 2000; // Delay between typewriting (ms)
 
 export default function Header() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const handleClick = () => {
-        router.push('/');
-    };
+  const handleClick = () => {
+    router.push('/');
+  };
 
-    const [text, setText] = useState('');
-    const [index, setIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
+  const [text, setText] = useState('');
+  const [index, setIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-    useEffect(() => {
-        const current = texts[index % texts.length];
-        let timer: NodeJS.Timeout;
+  useEffect(() => {
+    const current = texts[index % texts.length];
+    let timer: NodeJS.Timeout;
 
-        if (!isDeleting && text.length < current.length) {
-            timer = setTimeout(() => {
-                setText(current.slice(0, text.length + 1));
-            }, typingSpeed);
-        } else if (isDeleting && text.length > 0) {
-            timer = setTimeout(() => {
-                setText(current.slice(0, text.length - 1));
-            }, deletingSpeed);
-        } else if (!isDeleting && text === current) {
-            timer = setTimeout(() => setIsDeleting(true), delayBetween);
-        } else if (isDeleting && text === '') {
-            setIsDeleting(false);
-            setIndex((prev) => (prev + 1) % texts.length);
-        }
+    if (!isDeleting && text.length < current.length) {
+      timer = setTimeout(() => {
+        setText(current.slice(0, text.length + 1));
+      }, typingSpeed);
+    } else if (isDeleting && text.length > 0) {
+      timer = setTimeout(() => {
+        setText(current.slice(0, text.length - 1));
+      }, deletingSpeed);
+    } else if (!isDeleting && text === current) {
+      timer = setTimeout(() => setIsDeleting(true), delayBetween);
+    } else if (isDeleting && text === '') {
+      setIsDeleting(false);
+      setIndex((prev) => (prev + 1) % texts.length);
+    }
 
-        return () => clearTimeout(timer);
-    }, [text, isDeleting, index]);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, index]);
 
-    return (
-        <header className="flex flex-col p-4 md:p-6 select-none transition-all duration-300 ease-in-out sticky top-0 z-50 bg-background/50 backdrop-blur-lg w-full">
-            <div className="w-full max-w-3xl mx-auto flex justify-between items-center">
-                <div className="ml-6" onClick={handleClick}>
-                    <Link className="text-2xl md:text-3xl font-bold cursor-pointer" href="/">
-                        <span className="whitespace-pre">{text}</span>
-                        <span className="animate-pulse">|</span>
-                    </Link>
-                    <h2 className="text-sm md:text-base lg:text-lg text-gray-400 tracking-widest mt-1">
-                        {webDefaults.webSubHeader}
-                    </h2>
-                </div>
-                <div className="mr-6">
-                    <ThemeToggleButton />
-                </div>
-            </div>
-        </header>
-    );
+  return (
+    <header className='bg-background/50 sticky top-0 z-50 flex w-full flex-col p-4 backdrop-blur-lg transition-all duration-300 ease-in-out select-none md:p-6'>
+      <div className='mx-auto flex w-full max-w-3xl items-center justify-between'>
+        <div className='ml-6' onClick={handleClick}>
+          <Link
+            className='cursor-pointer text-2xl font-bold md:text-3xl'
+            href='/'
+          >
+            <span className='whitespace-pre'>{text}</span>
+            <span className='animate-pulse'>|</span>
+          </Link>
+          <h2 className='mt-1 text-sm tracking-widest text-gray-400 md:text-base lg:text-lg'>
+            {webDefaults.webSubHeader}
+          </h2>
+        </div>
+        <div className='mr-6'>
+          <ThemeToggleButton />
+        </div>
+      </div>
+    </header>
+  );
 }

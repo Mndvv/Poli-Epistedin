@@ -3,21 +3,21 @@ import VerticalNavbar from '@/components/navbar';
 
 import banner from '@assets/img/banner-2.jpg';
 
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Landing - Poli-Epistedin",
-  description: "My personal portfolio site.",
+  title: 'Landing - Poli-Epistedin',
+  description: 'My personal portfolio site.',
   openGraph: {
-    title: "Landing - Poli-Epistedin",
-    description: "My personal portfolio site.",
+    title: 'Landing - Poli-Epistedin',
+    description: 'My personal portfolio site.',
     images: [banner.src],
   },
 };
 
 export default function Home() {
   return (
-    <div className="h-screen p-4">
+    <div className='h-screen p-4'>
       <ProfileCard />
       <VerticalNavbar />
     </div>

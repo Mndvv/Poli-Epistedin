@@ -8,13 +8,12 @@ export default function ScrollToTopButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log("ScrollY:", window.scrollY);
+      console.log('ScrollY:', window.scrollY);
       setShowButton(window.scrollY > 200);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -23,10 +22,10 @@ export default function ScrollToTopButton() {
   return showButton ? (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-24 right-6 z-50 p-3 rounded-xl border-1 border-black shadow-2xl dark:border-white/40 transition-all"
-      aria-label="Scroll to top"
+      className='fixed right-6 bottom-24 z-50 rounded-xl border-1 border-black p-3 shadow-2xl transition-all dark:border-white/40'
+      aria-label='Scroll to top'
     >
-      <ArrowUp className="w-7 h-7" />
+      <ArrowUp className='h-7 w-7' />
     </button>
   ) : null;
 }
