@@ -25,7 +25,7 @@ export const developerProfiles = [
       'A passionate web developer with a knack for creating dynamic and responsive websites. Always eager to learn new technologies and improve skills.',
     skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js'],
     socialLinks: {
-      email: 'mailto:juansyahakbar25@gmail.com',
+      email: 'juansyahakbar25@gmail.com',
       github: 'https://github.com/Mndvv/',
       linkedin: 'https://www.linkedin.com/in/juansyah-akbar-77b278322/',
     },
