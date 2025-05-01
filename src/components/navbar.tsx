@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import dynamic from 'next/dynamic';
 
 import PostManager from '@/components/post-manager-tab';
 import Overview from '@/components/tabs/overview-tab';
