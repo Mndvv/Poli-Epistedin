@@ -50,7 +50,7 @@ export default function RootLayout({
       <ViewTransitions>
         <html lang='en' suppressHydrationWarning>
           <body
-            className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
+            className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col scroll-smooth antialiased`}
           >
             <ThemeProvider
               attribute='class'
