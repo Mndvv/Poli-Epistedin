@@ -1,5 +1,3 @@
-import { link } from "fs";
-
 export const webDefaults = {
     title: "Poli-Epistedin",
     description: "Πόλις Σοφία Εδίνα - Poli-Epistedin",

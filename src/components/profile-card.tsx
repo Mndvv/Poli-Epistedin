@@ -16,13 +16,13 @@ export default function ProfileCard() {
                 <Image src={bannerImage} alt="" className="object-cover" fill/>
             </div>
 
-            <div className="authorCard w-full -mt-20 sm:-mt-16 md:-mt-20 flex flex-col sm:flex-row items-center mx-auto sm:mx-0">
+            <div className="authorCard w-full -mt-20 sm:-mt-16 md:-mt-20 flex flex-col sm:flex-row items-center mx-auto sm:mx-0 z-10">
                 {/* Author Icon */}
                 <div className="profileCard-authorIcon w-32 h-32 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full border-4 border-white overflow-hidden select-none relative sm:ml-8">
                     <Image src={authorIcon} alt="" className="object-cover" fill/>
                 </div>
 
-                <div className="authorName font-bold text-gray-800 dark:text-white text-3xl sm:mt-15 sm:ml-6 sm:self-center flex-grow z-10">
+                <div className="authorName font-bold text-gray-800 dark:text-white text-3xl mt-3 sm:mt-15 sm:ml-6 sm:self-center flex-grow">
                     <p>{developerProfiles[0].name}</p>
                 </div>
 
