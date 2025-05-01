@@ -1,14 +1,17 @@
 import ProfileCard from '@/components/profile-card';
 import VerticalNavbar from '@/components/navbar';
 
+import banner from '@assets/img/banner-2.jpg';
+
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Landing - Poli-Epistedin",
-  description: "Where it all begins.",
+  description: "My personal portfolio site.",
   openGraph: {
     title: "Landing - Poli-Epistedin",
-    description: "Where it all begins.",
+    description: "My personal portfolio site.",
+    images: [banner.src],
   },
 };
 
