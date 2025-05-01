@@ -1,3 +1,5 @@
+import { link } from "fs";
+
 export const webDefaults = {
     title: "Poli-Epistedin",
     description: "Πόλις Σοφία Εδίνα - Poli-Epistedin",
@@ -16,11 +18,12 @@ export const navItems = [
 export const developerProfiles = [
     {
       name: "Juansyah Akbar",
-      image: "/assets/images/juansyah.jpg", // avoid `..` for public assets
       description: "A passionate web developer with a knack for creating dynamic and responsive websites. Always eager to learn new technologies and improve skills.",
       skills: ["HTML", "CSS", "JavaScript", "React", "Node.js"],
       socialLinks: {
-        github: "https://github.com/Mndvv/"
+        email: "mailto:juansyahakbar25@gmail.com",
+        github: "https://github.com/Mndvv/",
+        linkedin: "https://www.linkedin.com/in/juansyah-akbar-77b278322/",
       }
     }
 ];
