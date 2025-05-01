@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className='h-screen p-4'>
+    <div className='p-6'>
       <ProfileCard />
       <VerticalNavbar />
     </div>

@@ -1,7 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
+import PostManager from '@/components/post-manager-tab';
+import Overview from '@/components/tabs/overview-tab';
+import Media from "@/components/tabs/media-tab";
+import AboutMe from "@/components/tabs/about-me-tab";
+import AboutTheSite from "@/components/tabs/about-the-site-tab";
 
 type Tab = {
   id: string;
@@ -12,6 +19,7 @@ type Tab = {
 export default function HorizontalNavbar() {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
@@ -20,37 +28,46 @@ export default function HorizontalNavbar() {
     {
       id: 'overview',
       label: 'Overview',
-      component: <Lorem />,
+      component: <Overview />,
     },
     {
       id: 'media',
       label: 'Media',
-      component: <Lorem />,
+      component: <Media />,
     },
     {
       id: 'posts',
       label: 'Posts',
-      component: <Lorem />,
+      component: <PostManager />,
     },
     {
-      id: 'friends',
-      label: 'Friends',
-      component: <Lorem />,
+      id: 'aboutme',
+      label: 'About Me',
+      component: <AboutMe />,
     },
     {
-      id: 'about',
-      label: 'About me',
-      component: <Lorem />,
+      id: 'aboutsite',
+      label: 'About the site',
+      component: <AboutTheSite />,
     },
   ]);
 
   const [activeTab, setActiveTab] = useState<Tab>(tabs[0]);
 
   useEffect(() => {
-    const tabFromUrl = pathname.split('/').pop();
-    const initialTab = tabs.find((tab) => tab.id === tabFromUrl) || tabs[0];
-    setActiveTab(initialTab);
-  }, [pathname, tabs]);
+    // Get the tab parameter from URL query string
+    const tabFromUrl = searchParams.get('tab');
+    
+    if (tabFromUrl) {
+      const matchingTab = tabs.find((tab) => tab.id === tabFromUrl);
+      if (matchingTab) {
+        setActiveTab(matchingTab);
+      }
+    } else {
+      // Fallback to first tab if no query parameter is present
+      setActiveTab(tabs[0]);
+    }
+  }, [searchParams, tabs]);
 
   const updateIndicatorPosition = useCallback(() => {
     const activeIndex = tabs.findIndex((tab) => tab.id === activeTab.id);
@@ -86,11 +103,15 @@ export default function HorizontalNavbar() {
   // Update indicator when tabs change or component mounts
   useEffect(() => {
     updateIndicatorPosition();
-  }, [tabs]);
+  }, [tabs, activeTab]);
 
   const handleTabClick = (tab: Tab) => {
     setActiveTab(tab);
-    router.push(`?tab=${tab.id}`, { scroll: false });
+    
+    // Create a new URL with the updated tab parameter
+    const params = new URLSearchParams(searchParams);
+    params.set('tab', tab.id);
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
 
     // Scroll the tab into view when clicked
     const activeIndex = tabs.findIndex((t) => t.id === tab.id);
@@ -130,7 +151,7 @@ export default function HorizontalNavbar() {
                 buttonRefs.current[index] = el;
               }}
               onClick={() => handleTabClick(tab)}
-              className={`px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
+              className={`px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors hover:bg-gray-50/10 ${
                 activeTab.id === tab.id
                   ? 'text-black dark:text-white'
                   : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'

@@ -11,7 +11,7 @@ import { developerProfiles } from '@/lib/global/consts.g';
 
 export default function ProfileCard() {
   return (
-    <div className='-mt-6 flex w-full flex-col items-center sm:items-start'>
+    <div className='-mt-4 flex w-full flex-col items-center sm:items-start'>
       {/* Banner */}
       <div className='profileCard-banner relative h-40 w-full overflow-hidden rounded-xl shadow-xl shadow-gray-400 select-none sm:h-56 sm:shadow-gray-400/30 md:h-64 dark:shadow-blue-950'>
         <Image
@@ -33,16 +33,16 @@ export default function ProfileCard() {
           />
         </div>
 
-        <div className='authorName mt-3 flex-grow text-3xl font-bold text-gray-800 sm:mt-15 sm:ml-6 sm:self-center dark:text-white'>
+        <div className='authorName mt-3 flex-grow text-3xl font-bold text-gray-800 sm:mt-20 sm:ml-4 sm:self-center dark:text-white'>
           <p>{developerProfiles[0].name}</p>
         </div>
 
-        <div className='authorSocial mt-4 flex flex-row gap-4 sm:mt-15 sm:mr-8 sm:ml-auto'>
+        <div className='authorSocial mt-4 flex flex-row gap-4 sm:mt-20 sm:mr-8 sm:ml-auto'>
           <Link
             href={developerProfiles[0].socialLinks.github}
             target='_blank'
             rel='noopener noreferrer'
-            className='text-gray-800 transition-colors duration-300 hover:text-blue-900 dark:text-white'
+            className='text-gray-500 transition-colors duration-300 hover:text-black hover:dark:text-white dark:text-white/70'
           >
             <Github size={24} />
           </Link>
@@ -50,7 +50,7 @@ export default function ProfileCard() {
             href={developerProfiles[0].socialLinks.linkedin}
             target='_blank'
             rel='noopener noreferrer'
-            className='text-gray-800 transition-colors duration-300 hover:text-blue-900 dark:text-white'
+            className='text-gray-500 transition-colors duration-300 hover:text-black hover:dark:text-white dark:text-white/70'
           >
             <Linkedin size={24} />
           </Link>
@@ -58,7 +58,7 @@ export default function ProfileCard() {
             href={`mailto:${developerProfiles[0].socialLinks.email}`}
             target='_blank'
             rel='noopener noreferrer'
-            className='text-gray-800 transition-colors duration-300 hover:text-blue-900 dark:text-white'
+            className='text-gray-500 transition-colors duration-300 hover:text-black hover:dark:text-white dark:text-white/70'
           >
             <Mail size={24} />
           </Link>
