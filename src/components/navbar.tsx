@@ -6,9 +6,9 @@ import dynamic from 'next/dynamic';
 
 import PostManager from '@/components/post-manager-tab';
 import Overview from '@/components/tabs/overview-tab';
-import Media from "@/components/tabs/media-tab";
-import AboutMe from "@/components/tabs/about-me-tab";
-import AboutTheSite from "@/components/tabs/about-the-site-tab";
+import Media from '@/components/tabs/media-tab';
+import AboutMe from '@/components/tabs/about-me-tab';
+import AboutTheSite from '@/components/tabs/about-the-site-tab';
 
 type Tab = {
   id: string;
@@ -57,7 +57,7 @@ export default function HorizontalNavbar() {
   useEffect(() => {
     // Get the tab parameter from URL query string
     const tabFromUrl = searchParams.get('tab');
-    
+
     if (tabFromUrl) {
       const matchingTab = tabs.find((tab) => tab.id === tabFromUrl);
       if (matchingTab) {
@@ -107,7 +107,7 @@ export default function HorizontalNavbar() {
 
   const handleTabClick = (tab: Tab) => {
     setActiveTab(tab);
-    
+
     // Create a new URL with the updated tab parameter
     const params = new URLSearchParams(searchParams);
     params.set('tab', tab.id);
@@ -177,16 +177,5 @@ export default function HorizontalNavbar() {
       {/* Content Area */}
       <div className='mt-4 pb-8'>{activeTab.component}</div>
     </div>
-  );
-}
-
-function Lorem() {
-  return (
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo nisi
-      nesciunt quis, rem perspiciatis cumque sequi fugit, illo quidem quibusdam
-      ullam praesentium porro doloremque voluptates obcaecati nostrum veritatis
-      dignissimos? Eaque!
-    </p>
   );
 }

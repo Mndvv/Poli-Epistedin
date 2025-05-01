@@ -50,7 +50,7 @@ export default function RootLayout({
       <ViewTransitions>
         <html lang='en' suppressHydrationWarning>
           <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
+            className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
           >
             <ThemeProvider
               attribute='class'
@@ -59,7 +59,7 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <Header />
-              <main className='mx-auto flex w-full max-w-3xl flex-col gap-5 flex-grow'>
+              <main className='mx-auto flex w-full max-w-3xl flex-grow flex-col gap-5'>
                 {children}
               </main>
               <ScrollToTopButton />

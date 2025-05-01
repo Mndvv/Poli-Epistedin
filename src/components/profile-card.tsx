@@ -42,7 +42,7 @@ export default function ProfileCard() {
             href={developerProfiles[0].socialLinks.github}
             target='_blank'
             rel='noopener noreferrer'
-            className='text-gray-500 transition-colors duration-300 hover:text-black hover:dark:text-white dark:text-white/70'
+            className='text-gray-500 transition-colors duration-300 hover:text-black dark:text-white/70 hover:dark:text-white'
           >
             <Github size={24} />
           </Link>
@@ -50,7 +50,7 @@ export default function ProfileCard() {
             href={developerProfiles[0].socialLinks.linkedin}
             target='_blank'
             rel='noopener noreferrer'
-            className='text-gray-500 transition-colors duration-300 hover:text-black hover:dark:text-white dark:text-white/70'
+            className='text-gray-500 transition-colors duration-300 hover:text-black dark:text-white/70 hover:dark:text-white'
           >
             <Linkedin size={24} />
           </Link>
@@ -58,7 +58,7 @@ export default function ProfileCard() {
             href={`mailto:${developerProfiles[0].socialLinks.email}`}
             target='_blank'
             rel='noopener noreferrer'
-            className='text-gray-500 transition-colors duration-300 hover:text-black hover:dark:text-white dark:text-white/70'
+            className='text-gray-500 transition-colors duration-300 hover:text-black dark:text-white/70 hover:dark:text-white'
           >
             <Mail size={24} />
           </Link>
