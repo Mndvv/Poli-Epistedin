@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 type Tab = {
@@ -52,34 +52,28 @@ export default function HorizontalNavbar() {
     setActiveTab(initialTab);
   }, [pathname, tabs]);
 
-  const updateIndicatorPosition = () => {
+  const updateIndicatorPosition = useCallback(() => {
     const activeIndex = tabs.findIndex(tab => tab.id === activeTab.id);
     const activeButton = buttonRefs.current[activeIndex];
     const container = containerRef.current;
     const indicator = indicatorRef.current;
     
     if (activeButton && container && indicator) {
-      const buttonRect = activeButton.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      
-      // Calculate the position relative to the scrolled container
-      const position = activeButton.offsetLeft;
-      const width = buttonRect.width;
-      
-      indicator.style.transform = `translateX(${position}px)`;
-      indicator.style.width = `${width}px`;
+        const buttonRect = activeButton.getBoundingClientRect();
+        const position = activeButton.offsetLeft;
+        const width = buttonRect.width;
+        
+        indicator.style.transform = `translateX(${position}px)`;
+        indicator.style.width = `${width}px`;
     }
-  };
+  }, [activeTab.id, tabs])
 
   useEffect(() => {
     updateIndicatorPosition();
     
     const container = containerRef.current;
     if (container) {
-      // Add scroll event listener
       container.addEventListener('scroll', updateIndicatorPosition);
-      
-      // Add resize listener to handle window size changes
       window.addEventListener('resize', updateIndicatorPosition);
       
       return () => {
@@ -87,7 +81,7 @@ export default function HorizontalNavbar() {
         window.removeEventListener('resize', updateIndicatorPosition);
       };
     }
-  }, [activeTab]);
+  }, [updateIndicatorPosition]);
 
   // Update indicator when tabs change or component mounts
   useEffect(() => {
