@@ -1,5 +1,7 @@
 import ProfileCard from '@/components/profile-card';
-import VerticalNavbar from '@/components/navbar';
+import HorizontalNavbar, {
+  HorizontalNavbarSkeleton,
+} from '@/components/navbar';
 
 import banner from '@assets/img/banner-2.jpg';
 
@@ -20,8 +22,8 @@ export default function Home() {
   return (
     <div className='p-6'>
       <ProfileCard />
-      <Suspense fallback={<div>Loading...</div>}>
-        <VerticalNavbar />
+      <Suspense fallback={<HorizontalNavbarSkeleton />}>
+        <HorizontalNavbar />
       </Suspense>
     </div>
   );

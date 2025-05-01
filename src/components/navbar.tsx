@@ -178,3 +178,23 @@ export default function HorizontalNavbar() {
     </div>
   );
 }
+
+export function HorizontalNavbarSkeleton() {
+  return (
+    <div className='mt-6 mb-8 w-full animate-pulse'>
+      <div className='flex space-x-4 overflow-x-auto border-b border-gray-200 dark:border-gray-700'>
+        {[...Array(4)].map((_, idx) => (
+          <div
+            key={idx}
+            className='h-8 w-20 rounded bg-gray-300 dark:bg-gray-700'
+          ></div>
+        ))}
+      </div>
+      <div className='mt-4 space-y-4'>
+        <div className='h-4 w-1/2 rounded bg-gray-300 dark:bg-gray-700'></div>
+        <div className='h-4 w-2/3 rounded bg-gray-300 dark:bg-gray-700'></div>
+        <div className='h-4 w-1/3 rounded bg-gray-300 dark:bg-gray-700'></div>
+      </div>
+    </div>
+  );
+}
