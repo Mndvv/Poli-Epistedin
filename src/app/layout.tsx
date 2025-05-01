@@ -7,6 +7,8 @@ import "./globals.css";
 import Header from '@/components/header';
 import Footer from "@/components/footer";
 
+import ScrollToTopButton from "@/components/ui/scrollup-button";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -58,6 +60,7 @@ export default function RootLayout({
         <main className="w-full max-w-3xl mx-auto p-5 flex flex-col gap-5">
         {children}
         </main>
+        <ScrollToTopButton />
         <Footer />
         </ThemeProvider>
       </body>
