@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/ui/theme-provider';
 import { ViewTransitions } from 'next-view-transitions';
 import './globals.css';
 
+import { HeaderProvider } from '@/components/header-context';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 
@@ -58,12 +59,14 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Header />
-              <main className='mx-auto flex w-full max-w-3xl flex-grow flex-col gap-5'>
-                {children}
-              </main>
-              <ScrollToTopButton />
-              <Footer />
+              <HeaderProvider>
+                <Header />
+                <main className='mx-auto flex w-full max-w-3xl flex-grow flex-col gap-5'>
+                  {children}
+                </main>
+                <ScrollToTopButton />
+                <Footer />
+              </HeaderProvider>
             </ThemeProvider>
           </body>
         </html>

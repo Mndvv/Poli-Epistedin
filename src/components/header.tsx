@@ -2,17 +2,22 @@
 
 import ThemeToggleButton from './ui/theme-toggle-button';
 import { webDefaults } from '@/lib/global/consts.g';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Link } from 'next-view-transitions';
+import { useHeader } from './header-context';
 
 const texts = webDefaults.webHeader;
-const typingSpeed = 120; // Typewriter typing speed (ms)
-const deletingSpeed = 80; // Typewriter deleting speed (ms)
-const delayBetween = 2000; // Delay between typewriting (ms)
+const typingSpeed = 120;
+const deletingSpeed = 80;
+const delayBetween = 2000;
 
 export default function Header() {
+  const { title, subtitle } = useHeader();
   const router = useRouter();
+  const hasCustomHeader = !!title;
+  const pathname = usePathname();
+  const isBlogPage = pathname?.startsWith('/posts');
 
   const handleClick = () => {
     router.push('/');
@@ -23,6 +28,8 @@ export default function Header() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    if (hasCustomHeader) return;
+
     const current = texts[index % texts.length];
     let timer: NodeJS.Timeout;
 
@@ -42,7 +49,7 @@ export default function Header() {
     }
 
     return () => clearTimeout(timer);
-  }, [text, isDeleting, index]);
+  }, [text, isDeleting, index, hasCustomHeader]);
 
   return (
     <header className='bg-background/50 sticky top-0 z-50 flex w-full flex-col p-4 backdrop-blur-lg transition-all duration-300 ease-in-out select-none md:p-6'>
@@ -52,11 +59,25 @@ export default function Header() {
             className='cursor-pointer text-2xl font-bold md:text-3xl'
             href='/'
           >
-            <span className='whitespace-pre'>{text}</span>
-            <span className='animate-pulse'>|</span>
+            {hasCustomHeader ? (
+              <span>{title}</span>
+            ) : isBlogPage ? (
+              <span className='bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent dark:from-gray-100 dark:to-gray-300'>
+                {webDefaults.webHeader[0]}
+              </span>
+            ) : (
+              <>
+                <span className='whitespace-pre'>{text}</span>
+                <span className='animate-pulse'>|</span>
+              </>
+            )}
           </Link>
           <h2 className='mt-1 text-sm tracking-widest text-gray-400 md:text-base lg:text-lg'>
-            {webDefaults.webSubHeader}
+            {isBlogPage
+              ? 'Blogs | Enlighten your mind'
+              : hasCustomHeader
+                ? subtitle
+                : webDefaults.webSubHeader}
           </h2>
         </div>
         <div className='mr-6'>

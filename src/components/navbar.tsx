@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
-import PostManager from '@/components/post-manager-tab';
+import PostManager from '@/components/tabs/post-manager-tab';
 import Overview from '@/components/tabs/overview-tab';
 import Media from '@/components/tabs/media-tab';
 import AboutMe from '@/components/tabs/about-me-tab';
