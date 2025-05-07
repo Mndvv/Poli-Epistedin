@@ -14,9 +14,7 @@ export default function PostHeader({ frontMatter }: PostHeaderProps) {
       <div className='flex items-center text-sm text-gray-500 dark:text-gray-400'>
         {frontMatter.author && (
           <>
-            <span className='text-sm'>
-              {frontMatter.author}
-            </span>
+            <span className='text-sm'>{frontMatter.author}</span>
             <span className='mx-2'>•</span>
           </>
         )}
