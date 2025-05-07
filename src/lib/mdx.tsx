@@ -3,7 +3,9 @@ import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypePrism from 'rehype-prism-plus';
+import rehypeStringify from 'rehype-stringify';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import remarkGfm from 'remark-gfm';
 
 // Define types for our post data
 export interface PostFrontMatter {
@@ -50,9 +52,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
+    // Consider adding remarkGfm for better markdown support
     const mdxSource = await serialize(content, {
       mdxOptions: {
-        rehypePlugins: [rehypePrism],
+        rehypePlugins: [rehypePrism, rehypeStringify],
+        remarkPlugins: [remarkGfm],
+        format: 'mdx',
       },
       scope: data,
     });
