@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://saintark.my.id
+
+# Sitemaps
+Sitemap: https://saintark.my.id/sitemap.xml

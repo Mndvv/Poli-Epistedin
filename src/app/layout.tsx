@@ -60,6 +60,12 @@ export default function RootLayout({
     <>
       <ViewTransitions>
         <html lang='en' suppressHydrationWarning>
+          <head>
+            <meta
+              name='google-site-verification'
+              content='1qbm1QayrbvPDqeGCcDc8QRf9l0dAynIpu8RYGoiVYE'
+            />
+          </head>
           <body
             className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col scroll-smooth antialiased`}
           >
