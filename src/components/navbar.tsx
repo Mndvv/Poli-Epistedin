@@ -55,7 +55,7 @@ export default function HorizontalNavbar() {
 
   useEffect(() => {
     // Get the tab parameter from URL query string
-    const tabFromUrl = searchParams.get('tab');
+    const tabFromUrl = searchParams?.get('tab');
 
     if (tabFromUrl) {
       const matchingTab = tabs.find((tab) => tab.id === tabFromUrl);
@@ -108,9 +108,9 @@ export default function HorizontalNavbar() {
     setActiveTab(tab);
 
     // Create a new URL with the updated tab parameter
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams?.toString());
     params.set('tab', tab.id);
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    router.push(`${pathname}?${params}`, { scroll: false });
 
     // Scroll the tab into view when clicked
     const activeIndex = tabs.findIndex((t) => t.id === tab.id);
