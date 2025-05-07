@@ -6,9 +6,9 @@ import { Link } from 'next-view-transitions';
 import { ArrowLeft } from 'lucide-react';
 
 interface PostPageParams {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -18,7 +18,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PostPageParams) {
+export async function generateMetadata(props: PostPageParams) {
+  const params = await props.params;
   const slug = params?.slug;
 
   if (!slug) {
@@ -47,7 +48,8 @@ export async function generateMetadata({ params }: PostPageParams) {
   }
 }
 
-export default async function PostPage({ params }: PostPageParams) {
+export default async function PostPage(props: PostPageParams) {
+  const params = await props.params;
   const slug = params?.slug;
 
   if (!slug) {
