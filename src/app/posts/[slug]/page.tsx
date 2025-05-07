@@ -58,7 +58,7 @@ export default async function PostPage(props: PostPageParams) {
 
   const post = await getPostBySlug(slug);
 
-  if (!post) {
+  if (!post || !post.content) {
     notFound();
   }
 

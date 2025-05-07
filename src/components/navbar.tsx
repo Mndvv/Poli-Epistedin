@@ -102,7 +102,7 @@ export default function HorizontalNavbar() {
   // Update indicator when tabs change or component mounts
   useEffect(() => {
     updateIndicatorPosition();
-  }, [tabs, activeTab]);
+  }, [updateIndicatorPosition]);
 
   const handleTabClick = (tab: Tab) => {
     setActiveTab(tab);

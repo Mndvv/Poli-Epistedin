@@ -1,33 +1,20 @@
 'use client';
 
-import { ComponentProps, FC, JSX } from 'react';
+import React, { ComponentProps } from 'react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
+import { MDXRemoteProps } from 'next-mdx-remote';
 
-// Define component types
-type ComponentType<T extends keyof JSX.IntrinsicElements> = FC<
-  JSX.IntrinsicElements[T]
->;
+type MDXComponentsType = NonNullable<MDXRemoteProps['components']>;
 
-interface MDXComponents {
-  h1: ComponentType<'h1'>;
-  h2: ComponentType<'h2'>;
-  h3: ComponentType<'h3'>;
-  h4: ComponentType<'h4'>;
-  p: ComponentType<'p'>;
-  a: ComponentType<'a'>;
-  ul: ComponentType<'ul'>;
-  ol: ComponentType<'ol'>;
-  li: ComponentType<'li'>;
-  blockquote: ComponentType<'blockquote'>;
-  code: ComponentType<'code'>;
-  pre: ComponentType<'pre'>;
-  img: FC<ComponentProps<'img'> & { src: string; alt: string }>;
+// Create a more specific extended components type that includes our custom components
+type ExtendedMDXComponents = MDXComponentsType & {
+  img: React.FC<ComponentProps<'img'> & { src: string; alt: string }>;
   Image: typeof NextImage;
   Link: typeof NextLink;
-}
+};
 
-export const components: MDXComponents = {
+const components: ExtendedMDXComponents = {
   h1: (props) => <h1 className='mt-8 mb-4 text-3xl font-bold' {...props} />,
   h2: (props) => <h2 className='mt-6 mb-3 text-2xl font-bold' {...props} />,
   h3: (props) => <h3 className='mt-5 mb-2 text-xl font-bold' {...props} />,
@@ -70,3 +57,5 @@ export const components: MDXComponents = {
   Image: NextImage,
   Link: NextLink,
 };
+
+export { components };
