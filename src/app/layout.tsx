@@ -22,13 +22,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://saintark.my.id'),
-  title: 'Poli-Epistedin',
+  title: 'Poli-Epistedin -  Juansyah Akbar Portofolio Site',
   description:
-    'A portofolio site to show off my work and projects as a web developer.',
-  keywords: ['web', 'portfolio', 'developer', 'react'],
+    'Portfolio of Juansyah Akbar, a web developer showcasing projects, designs, and contact information.',
+  keywords: [
+    'web',
+    'portfolio',
+    'developer',
+    'react',
+    'Juansyah Akbar',
+    'Web Developer',
+    'Frontend Developer',
+    'React Developer',
+    'Portfolio',
+  ],
   openGraph: {
-    title: "Stark's Portfolio",
-    description: 'Check out my web dev projects!',
+    title: "Juansyah Akbar's Portfolio",
+    description: 'Portfolio website of Juansyah Akbar.',
     type: 'website',
     url: 'https://saintark.my.id',
     images: [
