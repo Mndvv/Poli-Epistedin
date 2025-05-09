@@ -14,6 +14,7 @@ export interface PostFrontMatter {
   date: string;
   description?: string;
   category?: string;
+  keywords?: string | string[];
   readingTime?: string;
   [key: string]: unknown;
 }

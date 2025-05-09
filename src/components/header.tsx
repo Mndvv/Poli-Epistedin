@@ -17,7 +17,7 @@ export default function Header() {
   const router = useRouter();
   const hasCustomHeader = !!title;
   const pathname = usePathname();
-  const isBlogPage = pathname?.startsWith('/posts');
+  const isBlogPage = pathname?.startsWith('/blogs/');
 
   const handleClick = () => {
     router.push('/');

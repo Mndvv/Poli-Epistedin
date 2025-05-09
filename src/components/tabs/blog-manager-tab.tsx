@@ -1,8 +1,46 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import PostList from '@/components/post-list';
+import PostList from '@/components/blog-post-list';
 import { Post } from '@/lib/mdx';
 import { ArrowRight } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://saintark.my.id/blogs'),
+  title: 'Poli-Blogs -  Juansyah Akbar Personal Blog',
+  description:
+    'Portfolio of Juansyah Akbar, a web developer showcasing projects, designs, and contact information.',
+  keywords: [
+    'web',
+    'blogs',
+    'developer',
+    'react',
+    'Juansyah Akbar',
+    'Web Developer',
+    'Frontend Developer',
+    'React Developer',
+    'Portfolio',
+    'Blog',
+    'Blogging',
+    'Writing',
+    'Content Creation',
+    'Web Development',
+    'Programming',
+  ],
+  openGraph: {
+    title: "Juansyah Akbar's Personal Blog",
+    description: 'Blogging website of Juansyah Akbar.',
+    type: 'website',
+    url: 'https://saintark.my.id/blogs',
+    images: [
+      {
+        url: 'https://static.saintark.my.id/static/assets/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
 
 export default function PostManager() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -54,10 +92,10 @@ export default function PostManager() {
       {hasMorePosts && (
         <div className='mt-6 text-right'>
           <Link
-            href='/posts'
+            href='/blogs'
             className='text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
           >
-            See more in the posts page <ArrowRight className='inline size-4' />
+            See more in the blogs page <ArrowRight className='inline size-4' />
           </Link>
         </div>
       )}

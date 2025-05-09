@@ -1,4 +1,4 @@
-import PostList from '@/components/post-list';
+import PostList from '@/components/blog-post-list';
 import { getAllPosts } from '@/lib/mdx';
 import { Link } from 'next-view-transitions';
 import { FileText, Frown, Home, BookText } from 'lucide-react';
@@ -22,7 +22,18 @@ export default async function PostManager() {
       </div>
 
       {posts.length > 0 ? (
-        <PostList posts={posts} />
+        <div>
+          <PostList posts={posts} />
+          <div className='mt-8 flex justify-center'>
+            Not interested?
+            <Link
+              href='/'
+              className='ml-1 inline-flex border-1 border-t-0 border-r-0 border-l-0 border-dotted border-b-gray-500'
+            >
+              Go back to the homepage
+            </Link>
+          </div>
+        </div>
       ) : (
         <div className='rounded-xl border border-gray-200 bg-white/50 py-16 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/70 dark:border-gray-700 dark:bg-gray-900/50 dark:hover:bg-gray-900/70'>
           <div className='mx-auto max-w-md'>

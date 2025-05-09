@@ -7,7 +7,7 @@ interface PostListProps {
 
 export default function PostList({ posts }: PostListProps) {
   if (!posts || posts.length === 0) {
-    return <div className='py-8 text-center'>No posts found</div>;
+    return <div className='-mt-2 text-gray-500'>No posts found.</div>;
   }
 
   return (
@@ -51,7 +51,7 @@ export default function PostList({ posts }: PostListProps) {
 
           <div className='mt-4'>
             <Link
-              href={`/posts/${post.slug}`}
+              href={`/blogs/${post.slug}`}
               className='text-sm font-medium text-blue-500 hover:text-blue-700'
             >
               Read more →

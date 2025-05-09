@@ -1,50 +1,22 @@
-import ProfileCard from '@/components/profile-card';
-import HorizontalNavbar, {
-  HorizontalNavbarSkeleton,
-} from '@/components/navbar';
-
+import SharedLayout from '@/components/shared-layout';
 import banner from '@assets/img/banner-2.jpg';
-
 import { Metadata } from 'next';
-import { Suspense } from 'react';
-
-import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: 'Landing - Poli-Epistedin',
-  description: 'My personal portfolio site.',
+  description:
+    'Juansyah Akbar Portofolio Site showcasing projects, skills, and experiences.',
   openGraph: {
     title: 'Landing - Poli-Epistedin',
-    description: 'My personal portfolio site.',
+    description:
+      "Explore Juansyah Akbar's portfolio, featuring innovative projects and professional achievements.",
     images: [banner.src],
+  },
+  alternates: {
+    canonical: 'https://www.saintark.my.id',
   },
 };
 
 export default function Home() {
-  return (
-    <div className='p-6'>
-      <Head>
-        <script type='application/ld+json'>
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Person',
-            name: 'Juansyah Akbar',
-            url: 'https://saintark.my.id',
-            sameAs: [
-              'https://github.com/Mndvv',
-              'https://www.linkedin.com/in/juansyah-akbar-77b278322/',
-              'mailto:juansyakbar25@gmail.com',
-            ],
-            jobTitle: 'Web Developer',
-            image: 'https://static.saintark.my.id/static/assets/og-image.jpg',
-          })}
-        </script>
-      </Head>
-
-      <ProfileCard />
-      <Suspense fallback={<HorizontalNavbarSkeleton />}>
-        <HorizontalNavbar />
-      </Suspense>
-    </div>
-  );
+  return <SharedLayout />;
 }

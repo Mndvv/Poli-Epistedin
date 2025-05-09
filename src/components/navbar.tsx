@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
-import PostManager from '@/components/tabs/post-manager-tab';
+import Blogsmanager from '@/components/tabs/blog-manager-tab';
 import Overview from '@/components/tabs/overview-tab';
 import Media from '@/components/tabs/media-tab';
 import AboutMe from '@/components/tabs/about-me-tab';
@@ -18,7 +18,6 @@ type Tab = {
 export default function HorizontalNavbar() {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
@@ -35,38 +34,41 @@ export default function HorizontalNavbar() {
       component: <Media />,
     },
     {
-      id: 'posts',
-      label: 'Posts',
-      component: <PostManager />,
+      id: 'blogs-overview',
+      label: 'Blogs',
+      component: <Blogsmanager />,
     },
     {
-      id: 'aboutme',
+      id: 'about-me',
       label: 'About Me',
       component: <AboutMe />,
     },
     {
-      id: 'aboutsite',
+      id: 'about-site',
       label: 'About the site',
       component: <AboutTheSite />,
     },
   ]);
 
-  const [activeTab, setActiveTab] = useState<Tab>(tabs[0]);
-
-  useEffect(() => {
-    // Get the tab parameter from URL query string
-    const tabFromUrl = searchParams?.get('tab');
-
-    if (tabFromUrl) {
-      const matchingTab = tabs.find((tab) => tab.id === tabFromUrl);
-      if (matchingTab) {
-        setActiveTab(matchingTab);
-      }
-    } else {
-      // Fallback to first tab if no query parameter is present
-      setActiveTab(tabs[0]);
+  // Function to determine active tab based on pathname
+  const getActiveTabFromPath = useCallback(() => {
+    // Check if we're at the root path
+    if (pathname === '/') {
+      return tabs[0]; // Default to first tab
     }
-  }, [searchParams, tabs]);
+
+    // Otherwise, extract the tab ID from the path
+    const currentPath = pathname?.split('/')[1] || '';
+    const matchingTab = tabs.find((tab) => tab.id === currentPath);
+    return matchingTab || tabs[0];
+  }, [pathname, tabs]);
+
+  const [activeTab, setActiveTab] = useState<Tab>(getActiveTabFromPath());
+
+  // Update active tab when pathname changes
+  useEffect(() => {
+    setActiveTab(getActiveTabFromPath());
+  }, [pathname, getActiveTabFromPath]);
 
   const updateIndicatorPosition = useCallback(() => {
     const activeIndex = tabs.findIndex((tab) => tab.id === activeTab.id);
@@ -105,12 +107,8 @@ export default function HorizontalNavbar() {
   }, [updateIndicatorPosition]);
 
   const handleTabClick = (tab: Tab) => {
-    setActiveTab(tab);
-
-    // Create a new URL with the updated tab parameter
-    const params = new URLSearchParams(searchParams?.toString());
-    params.set('tab', tab.id);
-    router.push(`${pathname}?${params}`, { scroll: false });
+    // Navigate to the tab path
+    router.push(`/${tab.id}`, { scroll: false });
 
     // Scroll the tab into view when clicked
     const activeIndex = tabs.findIndex((t) => t.id === tab.id);
