@@ -1,6 +1,7 @@
-# My Next, Tailwind Portofolio
+# Poli-Epistedin -+ My portofolio written in Next.
+🌲 Wisdom, Pure Green, Civilizations
 
-## More info is coming soon
+For now there's nothing important to see here, but i'll put more in the future, so stay tuned.
 
 ## Code of Conducts
 This code is Licensed in a custom [CoSenseOP-License-V1.0.](https://github.com/Mndvv/Poli-Epistedin?tab=License-1-ov-file).
