@@ -1,0 +1,109 @@
+---
+title: 'Implementasi program sederhana untuk pelajar'
+author: 'Juansyah Akbar'
+date: '2025-05-13'
+description: 'Aplikasi utilitas serbaguna untuk pelajar dengan fitur kesehatan, kalkulator prestasi, dan pembayaran.'
+category: 'My Project'
+keywords:
+  [
+    'aplikasi pelajar',
+    'kesehatan',
+    'kalkulator prestasi',
+    'kalkulator pembayaran',
+    'python',
+  ]
+tags: ['pelajar', 'edukasi', 'kesehatan', 'python', 'open source']
+---
+
+![Contoh program, gambar dari Juansyah Akbar.](/assets/AGC_20231201_193541331.jpg)
+
+Contoh program, gambar dari Juansyah Akbar.
+
+Kehidupan modern tidak luput dari peran teknologi dan program. Misal, membeli barang atau menyetorkan uang secara digital, berarti anda menggunakan program untuk membantu aktivitas anda.
+
+Begitu juga dengan projek saya kali ini, membuat alat utilitas serbaguna yang bermanfaat bagi pelajar, dengan fitur-fitur yang dapat membantu pelajar dalam kesehariannya, fitur-fitur tersebut mencakup:
+
+- Skrining dan saran kesehatan untuk pelajar, memberi gambaran kasar kondisi kesehatan seorang pelaja dan cara hidup lebih sehat.
+- Kalkulator Prestasi, membantu pelajar meraih prestasi dengan menghitung usaha apa yang dibutuhkan pelajar untuk mencapai keinginannya.
+- Kalkulator Bayaran, membantu pelajar menghitung bayaran sekolah seperti SPP, dan metode pembayaran yang efektif.
+
+![Screenshot dari main menu aplikasi saya](/assets/image.png)
+
+Screenshot dari main menu aplikasi saya
+
+Dengan fitur-fitur yang telah saya sebutkan diatas, maka saya mempresentasikan karya saya yaitu sebuah aplikasi utilitas pelajar, dengan alur program kurang lebih seperti ini:
+
+![Diagram alir program , made via diagrams.net](/assets/smartstudent_flowchart.svg)
+
+Diagram alir program , made via diagrams.net
+
+Program yang saya buat kali ini sebenarnya sederhana, meski terlihat kompleks, tapi tujuannya satu, yaitu membantu pelajar untuk menjadi lebih baik.
+
+Saya juga telah mencantumkan _Source Code_ program saya ini dibawah, program dan proyek ini sepenuhnya dibuat dengan pedoman _Open Source_, jadi siapa saja dapat mengedit atau menggunakan kode saya ini sesuai dengan kebutuhan mereka.
+
+```python
+from IPython.display import clear_output
+import sys
+import colorama as cr
+import math
+
+user_data = {
+    "nama": None,
+    "kelamin": None,
+    "umur": None,
+    "berat_badan": None,
+    "tinggi_badan": None,
+    "riwayat_diagnosis": []
+}
+
+def keluar_program():
+    return print(f"-> {cr.Fore.GREEN}Anda keluar dari aplikasi, terimakasih telah menggunakan!")
+
+# Dokterku Section -------------------------------------------------------------
+def klasifikasikan_imt(imt, klasifikasi="teks"):
+	...
+def kalkulator_imt():
+	...
+def cek_stress():
+	...
+def jadwal_sehat():
+  ...
+
+def dokterku():
+   ...
+# Dokterku section END ---------------------------------------------------------
+
+# Mainmenu section -------------------------------------------------------------
+def kalkulator_prestasi():
+  ...
+
+def kalkulator_pembayaran():
+   ...
+
+appMaps = {
+    f"👨‍⚕️{cr.Fore.BLUE}Dokterku {cr.Fore.LIGHTBLACK_EX}- Cek kesehatanmu disini!{cr.Fore.RESET}": dokterku,
+    f"🏆{cr.Fore.GREEN}Kalkulator Prestasi{cr.Fore.LIGHTBLACK_EX}- Penasaran butuh apa aja buat jadi yang terbaik?, disini!{cr.Fore.RESET}": kalkulator_prestasi,
+    f"💸{cr.Fore.YELLOW}Kalkulator Pembayaran{cr.Fore.LIGHTBLACK_EX}- Bingung hitung bayaran? kesini!{cr.Fore.RESET}": kalkulator_pembayaran,
+    f"❌{cr.Fore.RED}Keluar aplikasi{cr.Fore.RESET}" : keluar_program
+}
+
+pilihanTersedia = list(appMaps) # Convert dictionary to a list.
+
+def listPilihan(pesan_kustom=None,list=appMaps,pesan_error=None):
+
+
+def menu_awal():
+	...
+
+# Mainmenu section END----------------------------------------------------------
+
+def inisialisasi():
+   ...
+
+if __name__ == "__main__":
+    inisialisasi()
+```
+
+Full source code saya letakkan di github dibawah:
+
+[https://github.com/Mndvv/smartstudentapp](https://github.com/Mndvv/smartstudentapp)
