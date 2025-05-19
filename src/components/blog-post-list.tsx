@@ -19,7 +19,7 @@ export default function PostList({ posts }: PostListProps) {
         >
           <div className='flex items-start justify-between'>
             <div>
-              <Link href={`/posts/${post.slug}`}>
+              <Link href={`/blogs/${post.slug}`}>
                 <h2 className='text-2xl font-bold transition-colors hover:text-blue-500'>
                   {post.frontMatter.title}
                 </h2>
