@@ -24,86 +24,134 @@ Kehidupan modern tidak luput dari peran teknologi dan program. Misal, membeli ba
 Begitu juga dengan projek saya kali ini, membuat alat utilitas serbaguna yang bermanfaat bagi pelajar, dengan fitur-fitur yang dapat membantu pelajar dalam kesehariannya, fitur-fitur tersebut mencakup:
 
 - Skrining dan saran kesehatan untuk pelajar, memberi gambaran kasar kondisi kesehatan seorang pelaja dan cara hidup lebih sehat.
-- Kalkulator Prestasi, membantu pelajar meraih prestasi dengan menghitung usaha apa yang dibutuhkan pelajar untuk mencapai keinginannya.
+- Sahabat Belajarku, membantu pelajar dengan utilitas-utilitas serbaguna seperti pembuat kode QR, dukungan seperti rekomendasi Artificial Intelligence(AI) dan musik relaksasi sebagai pendamping belajar.
 - Kalkulator Bayaran, membantu pelajar menghitung bayaran sekolah seperti SPP, dan metode pembayaran yang efektif.
 
-![Screenshot dari main menu aplikasi saya](/assets/image.png)
-
-Screenshot dari main menu aplikasi saya
+![Screenshot 2025-06-03 233332.png](/assets/Screenshot_2025-06-03_233332.png)
+Screenshot main menu program saya.
 
 Dengan fitur-fitur yang telah saya sebutkan diatas, maka saya mempresentasikan karya saya yaitu sebuah aplikasi utilitas pelajar, dengan alur program kurang lebih seperti ini:
 
-![Diagram alir program , made via diagrams.net](/assets/smartstudent_flowchart.svg)
+![SmartStudents Flowchart, made by Diagrams.net](/assets/smarstudent_flowchart.svg)
 
-Diagram alir program , made via diagrams.net
+SmartStudents Flowchart, made via Diagrams.net
 
 Program yang saya buat kali ini sebenarnya sederhana, meski terlihat kompleks, tapi tujuannya satu, yaitu membantu pelajar untuk menjadi lebih baik.
 
 Saya juga telah mencantumkan _Source Code_ program saya ini dibawah, program dan proyek ini sepenuhnya dibuat dengan pedoman _Open Source_, jadi siapa saja dapat mengedit atau menggunakan kode saya ini sesuai dengan kebutuhan mereka.
 
-```python
-from IPython.display import clear_output
-import sys
-import colorama as cr
-import math
+## Kode Program (python-notebook)
 
+```python
+from IPython.display import clear_output as clearoutput, Image, display
+from tabulate import tabulate
+from datetime import datetime
+from zipfile import ZipFile
+import sys, math, pandas as pd, requests as req, random, string, re
+import openpyxl, time
+
+try:
+  import colorama as cr, qrcode
+except ImportError:
+  !pip install colorama qrcode[pil]
+  import colorama as cr, qrcode
+
+# Struktur data utama untuk menyimpan informasi pengguna
 user_data = {
-    "nama": None,
-    "kelamin": None,
-    "umur": None,
-    "berat_badan": None,
-    "tinggi_badan": None,
-    "riwayat_diagnosis": []
+  "nama": None,
+  "kelamin": None,
+  "umur": None,
+  "berat_badan": None,
+  "tinggi_badan": None,
+  "riwayat_diagnosis": []
 }
 
 def keluar_program():
-    return print(f"-> {cr.Fore.GREEN}Anda keluar dari aplikasi, terimakasih telah menggunakan!")
+  ...
+
+def clear_output():
+  ...
 
 # Dokterku Section -------------------------------------------------------------
 def klasifikasikan_imt(imt, klasifikasi="teks"):
-	...
+  ...
+
 def kalkulator_imt():
-	...
+  ...
+
 def cek_stress():
-	...
-def jadwal_sehat():
+  ...
+
+def cek_kecemasan():
   ...
 
 def dokterku():
-   ...
+  dokterkusapa=f"👨‍⚕️{cr.Fore.BLUE}\x1b[3mDokterku disini!\x1b[0m Pilih pilihan dibawah ya."
+  dokterkuMaps = {
+      f"🏋️{cr.Fore.GREEN}Kalkulator Berat Badan Ideal ({cr.Fore.BLUE}IMT{cr.Fore.RESET})" : kalkulator_imt,
+      f"‼️{cr.Fore.RED}Cek Stress{cr.Fore.RESET}" : cek_stress,
+      f"😰{cr.Fore.RED}Cek Gangguan Kecemasan{cr.Fore.RESET}" : cek_kecemasan,
+      f"⬅️{cr.Fore.LIGHTBLACK_EX}Kembali{cr.Fore.RESET}" : lambda: menu_awal()
+  }
+  ... # Logika loop untuk menangani input pengguna
+
 # Dokterku section END ---------------------------------------------------------
 
-# Mainmenu section -------------------------------------------------------------
-def kalkulator_prestasi():
+# Sabela section ---------------------------------------------------------------
+def musik_relaksasi():
   ...
 
-def kalkulator_pembayaran():
-   ...
+def qr_creator():
+  ...
 
+def saran_ai():
+  ...
+
+def sahabat_belajar():
+  sabelamenyapa=f"👩‍🦰{cr.Fore.BLUE}\x1b[3mSabela(Sahabat Belajar) disini, ada apa hari ini?\x1b[0m Pilih pilihan dibawah ya."
+  sabelaMaps = {
+      f"🎶{cr.Fore.BLUE}Musik Relaksasi" : musik_relaksasi,
+      f"📑{cr.Fore.GREEN}Pembuat Kode QR{cr.Fore.RESET}" : qr_creator,
+      f"🤖{cr.Fore.CYAN}Saran AI Belajar{cr.Fore.RESET}" : saran_ai,
+      f"⬅️{cr.Fore.LIGHTBLACK_EX}Kembali{cr.Fore.RESET}" : lambda: menu_awal()
+  }
+  ... # Logika loop untuk menangani input pengguna
+
+# Sabela section END -----------------------------------------------------------
+
+def kalkulator_pembayaran():
+  ...
+
+# Mainmenu section -------------------------------------------------------------
 appMaps = {
-    f"👨‍⚕️{cr.Fore.BLUE}Dokterku {cr.Fore.LIGHTBLACK_EX}- Cek kesehatanmu disini!{cr.Fore.RESET}": dokterku,
-    f"🏆{cr.Fore.GREEN}Kalkulator Prestasi{cr.Fore.LIGHTBLACK_EX}- Penasaran butuh apa aja buat jadi yang terbaik?, disini!{cr.Fore.RESET}": kalkulator_prestasi,
-    f"💸{cr.Fore.YELLOW}Kalkulator Pembayaran{cr.Fore.LIGHTBLACK_EX}- Bingung hitung bayaran? kesini!{cr.Fore.RESET}": kalkulator_pembayaran,
-    f"❌{cr.Fore.RED}Keluar aplikasi{cr.Fore.RESET}" : keluar_program
+  f"👨‍⚕️{cr.Fore.BLUE}Dokterku {cr.Fore.LIGHTBLACK_EX}- Cek kesehatanmu disini!{cr.Fore.RESET}": dokterku,
+  f"😜{cr.Fore.BLUE}Sahabat Belajarku {cr.Fore.LIGHTBLACK_EX}- Tetap nyaman meski sendiri disini!{cr.Fore.RESET}": sahabat_belajar,
+  f"💸{cr.Fore.YELLOW}Kalkulator Pembayaran{cr.Fore.LIGHTBLACK_EX}- Bingung hitung bayaran? kesini!{cr.Fore.RESET}": kalkulator_pembayaran,
+  f"❌{cr.Fore.RED}Keluar aplikasi{cr.Fore.RESET}" : keluar_program
 }
 
-pilihanTersedia = list(appMaps) # Convert dictionary to a list.
+pilihanTersedia = list(appMaps)
 
 def listPilihan(pesan_kustom=None,list=appMaps,pesan_error=None):
-
+  ...
 
 def menu_awal():
-	...
+  ...
 
 # Mainmenu section END----------------------------------------------------------
 
+# Titik awal program
 def inisialisasi():
-   ...
+  ...
 
 if __name__ == "__main__":
-    inisialisasi()
+  inisialisasi()
 ```
 
-Full source code saya letakkan di github dibawah:
+Untuk membaca full source code dengan syantax-highlighting, saya letakkan kodenya di beberapa media dibawah:
+
+[https://colab.research.google.com/drive/1mM8lG8QX2QfI8NsDr6rIycqR4vzyACe4?usp=sharing](https://colab.research.google.com/drive/1mM8lG8QX2QfI8NsDr6rIycqR4vzyACe4?usp=sharing)
+
+[https://gist.github.com/Mndvv/584deccce5a8f3fef7826fcd465f7d0d](https://gist.github.com/Mndvv/584deccce5a8f3fef7826fcd465f7d0d)
 
 [https://github.com/Mndvv/smartstudentapp](https://github.com/Mndvv/smartstudentapp)
